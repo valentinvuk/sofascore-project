@@ -12,8 +12,9 @@ export function TrackedList() {
       if (!(sportOfEventID in sports)) {
         setSports((prev) => [...prev, sportOfEventID]);
       }
+      return 0;
     });
-  }, [tracked]);
+  }, [tracked, sports]);
 
   const renderTrackedSportsCards = useCallback(() => {
     let uniqSports = Array.from(new Set(sports));

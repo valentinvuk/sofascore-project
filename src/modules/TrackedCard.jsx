@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { CategoryEvent } from "./CategoryEvent";
 export function TrackedCard({ events }) {
   useEffect(() => {
