@@ -11,7 +11,9 @@ export function CategoryList() {
     async function fetchList() {
       try {
         const res = await fetchCategoryList(sport, offset);
-        setList(res.categories);
+        if (res.categories.length === 0) {
+          setList(false);
+        } else setList(res.categories);
       } catch (err) {
         console.log(err);
       }
@@ -34,7 +36,11 @@ export function CategoryList() {
           />
         ));
     } else {
-      return <p className="loading main">Loading...</p>;
+      return list === false ? (
+        <p className="loading main">No games...</p>
+      ) : (
+        <p className="loading main">Loading...</p>
+      );
     }
   }, [list, offset]);
 

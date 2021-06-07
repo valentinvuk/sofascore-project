@@ -1,8 +1,18 @@
+import { useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useIsWide } from "../hooks/isWide";
 export function SportChooser() {
   const { sport, offset } = useParams();
   const isWide = useIsWide();
+
+  const renderSportEmoji = useCallback(() => {
+    if (sport === "football") return " ⚽";
+    if (sport === "basketball") return " 🏀";
+    if (sport === "handball") return " 🤾‍";
+    if (sport === "baseball") return " ⚾";
+    if (sport === "volleyball") return " 🏐";
+  }, [sport]);
+
   return (
     <div className="sports-chooser">
       {isWide ? (
@@ -41,7 +51,10 @@ export function SportChooser() {
       ) : (
         <>
           <div className="dropdown">
-            <h3>{sport}</h3>
+            <h3>
+              {sport}
+              {renderSportEmoji()}
+            </h3>
             <div className="dropdown-content">
               <Link
                 to={`/home/football/${offset}`}

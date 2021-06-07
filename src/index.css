@@ -3,8 +3,13 @@ body {
   font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #2c2c5e;
-  background: linear-gradient(0deg, #2c2c5e 0%, rgba(32, 32, 69, 1) 100%);
+  background: rgb(43, 157, 87);
+  background: linear-gradient(
+    0deg,
+    rgba(43, 157, 87, 1) 0%,
+    rgba(0, 78, 110, 1) 49%,
+    rgba(44, 44, 94, 1) 100%
+  );
 }
 p {
   margin: 0;

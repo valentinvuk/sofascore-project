@@ -5,7 +5,7 @@ import { fetchVenue } from "../api/eventVenue";
 export function EventPage() {
   const [homeImage, setHomeImage] = useState();
   const [awayImage, setAwayImage] = useState();
-  const [venue, setVenue] = useState();
+  const [eventInfo, setEventInfo] = useState({});
   let { id } = useParams();
   let { event } = useLocation().state;
 
@@ -17,14 +17,14 @@ export function EventPage() {
     async function fetchEventVenue() {
       try {
         const res = await fetchVenue(id);
-        setVenue(res?.event?.venue?.stadium?.name);
+        setEventInfo(res?.event);
       } catch (error) {
         console.log(error);
       }
     }
     fetchEventVenue();
 
-    return () => setVenue();
+    return () => setEventInfo({});
   }, [id]);
 
   useEffect(() => {
@@ -100,7 +100,18 @@ export function EventPage() {
             <p>{event.awayTeam.name}</p>
           </div>
         </div>
-        {venue ? <p>Venue: {venue}</p> : null}
+        {eventInfo?.venue?.stadium?.name ? (
+          <>
+            <p>
+              <b>Venue</b>: {eventInfo?.venue?.stadium?.name},&nbsp;
+              {eventInfo?.venue?.city?.name},&nbsp;
+              {eventInfo?.venue?.country?.name}
+            </p>
+            <p style={{ marginTop: "10px" }}>
+              <b>Capacity</b>: {eventInfo?.venue?.stadium?.capacity}{" "}
+            </p>
+          </>
+        ) : null}
       </div>
     </div>
   );
