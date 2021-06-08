@@ -27,7 +27,7 @@ export function CategoryTournament({ unique, tournament }) {
 
   return (
     <div className="uniqueTournament">
-      {image ? <img src={image} alt=" " /> : " "}
+      {image ? <img src={image} alt={tournament?.name} /> : " "}
       <p>{tournament?.name ? tournament.name : "Other "}</p>
     </div>
   );

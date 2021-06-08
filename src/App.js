@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { Header } from "./components/Header";
 import { HomePage } from "./views/HomePage";
-import { CategoryPage } from "./views/CategoryPage";
 import { EventPage } from "./views/EventPage";
 import { TrackedContext } from "./context/TrackedContext";
 
@@ -42,7 +41,6 @@ function App() {
             <Redirect to="/home/football/0"></Redirect>
           </Route>
           <Route path="/home/:sport/:offset" component={HomePage} />
-          <Route path="/category/:id" component={CategoryPage} />
           <Route path="/event/:id" component={EventPage} />
           <Route path="*">
             <div className="App">404</div>

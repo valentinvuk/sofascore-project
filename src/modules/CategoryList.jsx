@@ -26,7 +26,6 @@ export function CategoryList() {
   const renderCategories = useCallback(() => {
     if (list?.length) {
       return list
-
         .sort((a, b) => b.category.priority - a.category.priority)
         .map((category) => (
           <CategoryCard

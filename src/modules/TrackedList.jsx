@@ -7,6 +7,7 @@ export function TrackedList() {
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
+    setSports([]);
     tracked.map((event) => {
       let sportOfEventID = event?.tournament?.category?.sport?.id;
       if (!(sportOfEventID in sports)) {

@@ -1,13 +1,47 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useRef, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SvgComponent from "../components/BellSvg";
 import CancelSvg from "../components/CancelSvg";
 import { TrackedContext } from "../context/TrackedContext";
 import { epochToDate } from "../utils/epochToDate";
+import { fetchVenue } from "../api/eventVenue";
 
 export function CategoryEvent({ event, remove }) {
   const { addToTracked, isInTracked, removeFromTracked } =
     useContext(TrackedContext);
+  const [eventDetails, setEventDetails] = useState({});
+  const [ready, setReady] = useState(true);
+  const mountedRef = useRef(true);
+
+  /* useEffect(() => {
+    async function fetchEventDetails() {
+      try {
+        const res = await fetchVenue(event?.id);
+        setEventDetails(res?.event);
+      } catch (error) {
+        console.log(error);
+      }
+      setReady(false);
+    }
+    if (ready) {
+      fetchEventDetails();
+      console.log("fetcham");
+    }
+
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [ready, event?.id]);
+
+  useEffect(() => {
+    let intervalID = setInterval(() => {
+      setReady(true);
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, []); */
 
   const getStartTime = useCallback(
     () => epochToDate(event?.startTimestamp),
@@ -18,6 +52,7 @@ export function CategoryEvent({ event, remove }) {
       addToTracked(event);
     }
   }, [addToTracked, isInTracked, event]);
+
   return (
     <div className="category-event">
       <div className="start-time">
